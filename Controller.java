@@ -11,6 +11,7 @@ public class Controller {
         this.theModel = theModel;
         this.theView.addTesterListener(new addTesterListener());
         this.theView.addSubmitListener(new addSubmitListener());
+        this.theView.addRunListener(new addRunButton());
        }
       
        class addTesterListener implements ActionListener{
@@ -27,5 +28,13 @@ public class Controller {
                      theModel.printReview(uR);
               }
        }
+       
+       class addRunButton implements ActionListener{
+    	   public void actionPerformed(ActionEvent e) {
+    		   String path = theView.getUploadPath();
+    		   theModel.printPath(path);
+    	   }
+       }
  
 }
+

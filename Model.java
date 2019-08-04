@@ -24,5 +24,8 @@ public class Model {
               System.out.println("This is your Review: " + uReview);
        }
        
+       public void printPath(String p) {
+    	   System.out.println("This is the path for the file selected: " + p);
+       }
  
 }

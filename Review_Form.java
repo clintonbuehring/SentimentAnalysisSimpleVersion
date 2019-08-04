@@ -43,7 +43,11 @@ public class Review_Form extends JFrame{
     private JTextField polarityTextField = new JTextField(10);
    
     private JButton testButton = new JButton("Tester");
-    private JButton submitButton = new JButton("Submit");
+    private JButton submitButton = new JButton("Submit"); 
+    private JButton uploadButton = new JButton("Uplaod");
+    private JButton runButton = new JButton("Run");
+    
+    private String dataSetPath;
    
     private String uReview;
    
@@ -92,11 +96,16 @@ public class Review_Form extends JFrame{
               lblTitle_3.setBounds(50, 400, 300, 20);
               panel.add(lblTitle_3);
  
-              JButton uploadButton = new JButton("Upload");
+              //JButton uploadButton = new JButton("Upload");
               uploadButton.setBackground(Color.RED);
               uploadButton.setForeground(Color.WHITE);
               uploadButton.setBounds(50, 430, 90, 25);
               panel.add(uploadButton);
+              
+              runButton.setBackground(Color.BLUE);
+              runButton.setForeground(Color.WHITE);
+              runButton.setBounds(150, 430, 90, 25);
+              panel.add(runButton);
              
               JLabel dashs2 = new JLabel("---------------------------------------------------------"
                      + "--------------------------------------------------------------------");
@@ -150,7 +159,9 @@ public class Review_Form extends JFrame{
                      int returnValue = fileChooser.showOpenDialog(null);
                      if(returnValue == JFileChooser.APPROVE_OPTION) {
                          File selectedFile = fileChooser.getSelectedFile();
-                         System.out.println(selectedFile.getName());
+                         //System.out.println(selectedFile.getPath());  // this command gets the complete path of the file you pick
+                         dataSetPath = selectedFile.getPath();
+                         //System.out.println(dataSetPath);
                      }
                   }
               });
@@ -181,10 +192,14 @@ public class Review_Form extends JFrame{
     }
    
        // Getter for the file directory of the movie review dataset
-       public JFileChooser getFileChooser() {
+/*       public JFileChooser getFileChooser() {
            return fileChooser;
        }
- 
+*/
+       public String getUploadPath() {
+    	   return dataSetPath;
+       }
+       
        // Meant to accept the verdict of the review.  Is it Positive or Negative...
        public void setTypeOfReview(String reviewVerdict) {
            typeOfReviewTextField.setText(reviewVerdict);
@@ -210,6 +225,10 @@ public class Review_Form extends JFrame{
       
        void addSubmitListener(ActionListener listenForSubmitButton) {
               submitButton.addActionListener(listenForSubmitButton);
+       }
+       
+       void addRunListener(ActionListener listenForUploadButton) {
+    	   runButton.addActionListener(listenForUploadButton);// changed from uploadButton to runButton
        }
  
 }
